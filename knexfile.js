@@ -15,8 +15,7 @@ module.exports = {
     },
     seeds: {
       directory: './database/seeds'
-    },
-    useNullAsDefault: true
+    }
   },
 
   // staging: {
@@ -38,7 +37,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: process.env.DATABASE_URL,
+      database: process.env.DATABASE_URL
     },
     migrations: {
       tableName: 'knex_migrations',
