@@ -9,3 +9,7 @@ module.exports = knex(knexConfig[environment]);
 // const environment = process.env.ENVIRONMENT || "production";
 
 // module.exports = knex(knexConfig[environment]);
+
+/*
+DATABASE_URL=postgres://postgres:Rafeek123@host:5432/postgres
+*/
