@@ -35,9 +35,10 @@ server.post('/image-upload', (req, res) => {
     Promise
         .all(promises)
         .then(results => res.json(results))
-        .catch((err) => res.status(400).json(err)); 
-    
+        .catch((err) => res.status(400).json(err));
 })
+
+
 
 
 

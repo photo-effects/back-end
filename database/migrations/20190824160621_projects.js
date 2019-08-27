@@ -15,7 +15,9 @@ exports.up = function(knex) {
   
       bl.timestamp('created_at').defaultTo(knex.fn.now());
       bl.string("public_id");
-      bl.string('secure_url');
+      bl.string("secure_url");
+      bl.string("tags");
+      bl.text("save_to_html-json").defaultTo("");
       
     });
   };
