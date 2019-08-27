@@ -9,6 +9,7 @@ const projectsRouter = require('../projects/projects-router.js');
 
 const server = express();
 
+// cloudinary config
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY, 
