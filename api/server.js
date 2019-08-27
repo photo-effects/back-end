@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
+const Projects = require('../projects/projects-model.js');
 
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
@@ -37,6 +38,21 @@ server.post('/image-upload', (req, res) => {
         .all(promises)
         .then(results => res.json(results))
         .catch((err) => res.status(400).json(err));
+})
+
+server.post('/projects', async(req, res) => {
+    const post = req.body;
+
+    try {
+        if(post.title) {
+            const newPost = await Projects.addPost(post);
+            res.status(201).json(newPost);
+        } else {
+            res.status(400).json({err: 'provide title'})
+        }
+    } catch(err) {
+        res.status(500).json(err);
+    }
 })
 
 
