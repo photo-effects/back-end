@@ -12,5 +12,19 @@ router.get("/api/projects", (req, res) => {
       .catch(err => res.send(err));
   });
 
+  router.post("/api/projects", async(req, res) => {
+    const post = req.body;
+    try {
+        if(post.title) {
+            const newPost = await Projects.addPost(post);
+            res.status(201).json(newPost);
+        } else {
+            res.status(400).json({err: 'provide title'})
+        }
+    } catch(err) {
+        res.status(500).json(err);
+    }
+})
+
 
   module.exports = router;
