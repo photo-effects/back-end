@@ -26,5 +26,20 @@ router.get("/api/projects", (req, res) => {
     }
 })
 
+router.delete("/api/projects/:id", async (req,res) => {
+  try {
+    const count = await Projects.deletePost(req.params.id);
+    if(count > 0) {
+      res.status(200).json({ message: 'Project has been deleted!' })
+    } else {
+      res.status(404).json({ message: 'Project could not be found' })
+    }
+  } catch(error) {
+    res.status(500).json({
+      message: "Error removing project"
+    })
+  }
+})
+
 
   module.exports = router;

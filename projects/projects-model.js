@@ -3,7 +3,8 @@ const db = require('../database/dbConfig.js');
 
 module.exports = {
     find,
-    addPost
+    addPost,
+    deletePost
 
 };
 
@@ -14,4 +15,10 @@ function find() {
 
 function addPost(post) {
     return db('projects').insert(post);
+}
+
+function deletePost(id) {
+    return db('projects')
+      .where('id', id)
+      .del();
 }
