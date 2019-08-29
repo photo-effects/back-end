@@ -17,9 +17,8 @@ function addPost(post) {
     return db('projects').insert(post);
 }
 
-function deletePost(id, public_id) {
+function deletePost(id) {
     return db('projects')
       .where('id', id)
-      .where('public_id', public_id)
       .del();
 }
