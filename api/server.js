@@ -39,6 +39,11 @@ server.post('/image-upload', (req, res) => {
         .catch((err) => res.status(400).json(err));
 })
 
+// server.delete('/image-delete/:id', (req, res) => {
+//     console.log(id)
+
+// }
+
 // server.post('/projects', async(req, res) => {
 //     const post = req.body;
 //     try {

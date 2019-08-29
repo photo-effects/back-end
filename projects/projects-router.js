@@ -1,6 +1,6 @@
 
 const router = require("express").Router();
-
+const cloudinary = require('cloudinary');
 const Projects = require("./projects-model.js");
 
 
@@ -27,10 +27,12 @@ router.get("/api/projects", (req, res) => {
 })
 
 router.delete("/api/projects/:id", async (req,res) => {
+  
   try {
     const count = await Projects.deletePost(req.params.id);
     if(count > 0) {
-      res.status(200).json({ message: 'Project has been deleted!' })
+      // await cloudinary.v2.uploader.destroy(r)
+      res.status(200).json({ message: `Project has been deleted! ${req.params.public_id}` })
     } else {
       res.status(404).json({ message: 'Project could not be found' })
     }
