@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
-const Projects = require('../projects/projects-model.js');
 
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
