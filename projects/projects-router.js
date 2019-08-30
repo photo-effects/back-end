@@ -12,6 +12,8 @@ router.get("/api/projects", (req, res) => {
       .catch(err => res.send(err));
   });
 
+
+  // posts new project to our postgreSQL db
   router.post("/api/projects", async(req, res) => {
     const post = req.body;
     try {
@@ -26,6 +28,8 @@ router.get("/api/projects", (req, res) => {
     }
 })
 
+
+// deletes project from postgreSQL and cloudinary db
 router.delete("/api/projects/:id", async (req,res) => {
   console.log(req.body)
   try {
