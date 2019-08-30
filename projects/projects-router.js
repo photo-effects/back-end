@@ -27,6 +27,7 @@ router.get("/api/projects", (req, res) => {
 })
 
 router.delete("/api/projects/:id", async (req,res) => {
+  console.log(req.body)
   try {
     const count = await Projects.deletePost(req.params.id);
     if(count > 0) {
