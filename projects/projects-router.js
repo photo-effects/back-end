@@ -30,7 +30,7 @@ router.delete("/api/projects/:id", async (req,res) => {
   try {
     const count = await Projects.deletePost(req.params.id);
     if(count > 0) {
-      await cloudinary.v2.uploader.destroy(req.params.public_id)
+      await cloudinary.v2.uploader.destroy(req.body.public_id)
       // await cloudinary.v2.uploader.destroy()
       res.status(200).json({ message: `Project has been deleted! ${req.params.id}` })
     } else {
