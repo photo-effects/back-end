@@ -41,6 +41,11 @@ server.post('/image-upload', (req, res) => {
 })
 
 
+server.delete('/image-delete', async (req, res) => {
+    await cloudinary.v2.uploader.destroy(req.body.public_id);
+})
+
+
 
 
 
