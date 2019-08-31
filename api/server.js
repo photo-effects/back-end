@@ -42,7 +42,15 @@ server.post('/image-upload', (req, res) => {
 
 
 server.delete('/image-delete', async (req, res) => {
+    try {
     await cloudinary.v2.uploader.destroy(req.body.public_id);
+    res.status(200).json({ message: `Image deleted` })
+    }
+    catch(err) {
+        res.status(500).json({
+            message: 'Error removing!'
+        })
+    }
 })
 
 
