@@ -1,6 +1,6 @@
 
 const router = require("express").Router();
-
+const cloudinary = require('cloudinary');
 const Projects = require("./projects-model.js");
 
 
@@ -12,6 +12,8 @@ router.get("/api/projects", (req, res) => {
       .catch(err => res.send(err));
   });
 
+
+  // posts new project to our postgreSQL db
   router.post("/api/projects", async(req, res) => {
     const post = req.body;
     try {
@@ -24,6 +26,26 @@ router.get("/api/projects", (req, res) => {
     } catch(err) {
         res.status(500).json(err);
     }
+})
+
+
+// deletes project from postgreSQL and cloudinary db
+router.delete("/api/projects/:id", async (req,res) => {
+  console.log(req.body)
+  try {
+    const count = await Projects.deletePost(req.params.id);
+    if(count > 0) {
+      await cloudinary.v2.uploader.destroy(req.body.public_id)
+      // await cloudinary.v2.uploader.destroy()
+      res.status(200).json({ message: `Project has been deleted! ${req.params.id}` })
+    } else {
+      res.status(404).json({ message: 'Project could not be found' })
+    }
+  } catch(error) {
+    res.status(500).json({
+      message: "Error removing project"
+    })
+  }
 })
 
 

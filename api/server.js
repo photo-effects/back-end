@@ -3,7 +3,6 @@ const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
-const Projects = require('../projects/projects-model.js');
 
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
@@ -31,6 +30,7 @@ server.get('/', (req, res) => {
 
 
 
+// After clicking "Choose File" this pushes image to cloudinary db
 server.post('/image-upload', (req, res) => {
     const values = Object.values(req.files)
     const promises = values.map(image => cloudinary.uploader.upload(image.path))
@@ -40,19 +40,18 @@ server.post('/image-upload', (req, res) => {
         .catch((err) => res.status(400).json(err));
 })
 
-// server.post('/projects', async(req, res) => {
-//     const post = req.body;
-//     try {
-//         if(post.title) {
-//             const newPost = await Projects.addPost(post);
-//             res.status(201).json(newPost);
-//         } else {
-//             res.status(400).json({err: 'provide title'})
-//         }
-//     } catch(err) {
-//         res.status(500).json(err);
-//     }
-// })
+
+server.delete('/image-delete', async (req, res) => {
+    try {
+    await cloudinary.v2.uploader.destroy(req.body.public_id);
+    res.status(200).json({ message: `Image deleted` })
+    }
+    catch(err) {
+        res.status(500).json({
+            message: 'Error removing!'
+        })
+    }
+})
 
 
 
