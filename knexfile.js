@@ -1,33 +1,32 @@
 // Update with your config settings.
 
 module.exports = {
-
   development: {
-    client:'postgresql',
+    client: "postgresql",
     connection: {
-      database: 'postgres',
-      user: 'postgres',
-      password: 'Rafeek123',
+      database: "postgres",
+      user: process.env.USER,
+      password: process.env.PASS
     },
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './database/migrations'
+      tableName: "knex_migrations",
+      directory: "./database/migrations"
     },
     seeds: {
-      directory: './database/seeds'
+      directory: "./database/seeds"
     }
   },
 
   staging: {
-    client: 'pg',
+    client: "pg",
     connection: process.env.DATABASE_URL,
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './database/migrations' 
+      tableName: "knex_migrations",
+      directory: "./database/migrations"
     },
     seeds: {
-      directory: './database/seeds'
-  }
+      directory: "./database/seeds"
+    }
   },
   // staging: {
   //   client: 'postgresql',
@@ -46,16 +45,14 @@ module.exports = {
   // },
 
   production: {
-    client: 'pg',
+    client: "pg",
     connection: process.env.DATABASE_URL,
     migrations: {
-      tableName: 'knex_migrations',
-      directory: './database/migrations' 
+      tableName: "knex_migrations",
+      directory: "./database/migrations"
     },
     seeds: {
-      directory: './database/seeds'
+      directory: "./database/seeds"
+    }
   }
-  }
-
 };
-
