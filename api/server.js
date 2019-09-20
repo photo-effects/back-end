@@ -6,6 +6,7 @@ const formData = require('express-form-data');
 
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
+const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js');
 
 const server = express();
 
@@ -23,6 +24,7 @@ server.use(formData.parse());
 
 server.use('/', usersRouter);
 server.use('/', projectsRouter);
+server.use('/canvasprojects', canvasprojectsRouter);
 
 server.get('/', (req, res) => {
     res.send('Welcome to the Back-end for Photo Effects! :) Please enjoy your stay! Working try connecting! xoxo :)')

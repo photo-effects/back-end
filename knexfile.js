@@ -5,9 +5,9 @@ module.exports = {
   development: {
     client:'postgresql',
     connection: {
-      database: 'postgres',
+      database: 'photoeffects',
       user: 'postgres',
-      password: 'Rafeek123',
+      password: 'long4229beach',
     },
     migrations: {
       tableName: 'knex_migrations',
@@ -29,21 +29,6 @@ module.exports = {
       directory: './database/seeds'
   }
   },
-  // staging: {
-  //   client: 'postgresql',
-  //   connection: {
-  //     database: 'my_db',
-  //     user:     'username',
-  //     password: 'password'
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   migrations: {
-  //     tableName: 'knex_migrations'
-  //   }
-  // },
 
   production: {
     client: 'pg',
