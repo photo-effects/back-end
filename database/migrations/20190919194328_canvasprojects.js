@@ -6,7 +6,6 @@ exports.up = function(knex) {
      tbl.integer('user_created_id').unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
      tbl.timestamp('p_created_at').defaultTo(knex.fn.now());
      tbl.string("p_data").notNullable();
-     tbl.string("p_tags");
      tbl.integer('p_likes').defaultTo(0);
      tbl.boolean('p_published');
   })

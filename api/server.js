@@ -24,13 +24,11 @@ server.use(formData.parse());
 
 server.use('/', usersRouter);
 server.use('/', projectsRouter);
-server.use('/canvasprojects', canvasprojectsRouter);
+server.use('/canvas', canvasprojectsRouter);
 
 server.get('/', (req, res) => {
     res.send('Welcome to the Back-end for Photo Effects! :) Please enjoy your stay! Working try connecting! xoxo :)')
 });
-
-
 
 // After clicking "Choose File" this pushes image to cloudinary db
 server.post('/image-upload', (req, res) => {
