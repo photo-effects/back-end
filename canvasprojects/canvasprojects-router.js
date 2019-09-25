@@ -12,7 +12,7 @@ router.get('/projects', async (req, res) => {
    const canvasprojects = await CanvasProjects.getAll();
    res.status(200).json(canvasprojects)
   } catch (err) {
-   res.status(500).json({ error: "Error retrieving all projects"})
+   res.status(500).json(err)
   }
 });
 
@@ -32,7 +32,7 @@ router.get('/:projectId/tags', async (req, res) => {
       const tagsbyProjectId = await CanvasProjects.getTagsByProjectId(projectId);
       res.status(200).json(tagsbyProjectId);
    } catch (err) {
-      res.status(500).json({ error: "Error retrieving tags by project Id"})
+      res.status(500).json(err)
    }
 })
 

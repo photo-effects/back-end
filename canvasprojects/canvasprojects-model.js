@@ -11,31 +11,45 @@ module.exports = {
 };
 
 function getAll() {
-   return db('canvasprojects')
-      .join("tags", "canvasprojects.id", "=", "tags.project_id")
-      .select("canvasprojects.*")
+   // return db('canvasprojects')
+   //    .join("tags", "canvasprojects.id", "=", "tags.project_id")
+   //    .select("canvasprojects.*", "tags.name")
+
+   const tags = db('canvasprojects')
+   .join("tags", "canvasprojects.id", "=", "tags.project_id")
+   .select("tags.name")
+
+   return {...tags}
 }
 
 function getById(projectId) {
+   // return db('canvasprojects')
+   //    .where({ id: projectId})
+   //    .first();
+
+   // const tags = db('tags')
+   //    .join("canvasprojects", "canvasprojects.id", "=", "tags.project_id")
+   //    .where({ project_id: projectId })
+   //    .select("tags.name", "tags.project_id")
+
    return db('canvasprojects')
-      .where({ id: projectId})
-      .first();
+      .where({ id: projectId })
+      .select("canvasprojects.*")
+      .then(projects => {
+         return db('tags')
+         .where({project_id: projectId})
+         .select("tags.name")
+         .then(tags => {
+            const result = { ...projects[0], tags: tags };
+            return result;
+         })
+      })
 }
 
 function getTagsByProjectId(projectId) {
    return db('tags')
       .where({ project_id: projectId })
-      // .join(
-      //    "canvasprojects", 
-      //    "tags.project_id", 
-      //    "=", 
-      //    "canvasprojects.id"
-      // )
-      .select(
-         "tags.name",
-         // "canvasprojects.id"
-      )
-      // .select("tags.name")
+      .select("tags.name", "tags.project_id")
 }
 
 function getProjectsByUser(userId) {
