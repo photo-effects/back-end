@@ -14,7 +14,7 @@ exports.seed = function(knex) {
         {
           p_name: "My Second Project",
           p_description: "This is my second ever project",
-          user_created_id: 2,
+          user_created_id: 1,
           p_created_at: null,
           p_data: 'this is the project data for my second project',
           p_likes: 10,
@@ -23,7 +23,7 @@ exports.seed = function(knex) {
         {
           p_name: "My Third Project",
           p_description: "This is my third ever project",
-          user_created_id: 1,
+          user_created_id: 2,
           p_created_at: null,
           p_data: 'this is the project data for my third project',
           p_likes: 10,

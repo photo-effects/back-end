@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
 // GET Methods
 
-router.get('/', async (req, res) => {
+router.get('/projects', async (req, res) => {
   try {
    const canvasprojects = await CanvasProjects.getAll();
    res.status(200).json(canvasprojects)
@@ -57,6 +57,18 @@ router.post('/', async (req, res) => {
       res.status(201).json(newProject);
    } catch (err) {
       res.status(500).json({ error: "Error posting new project"})
+   }
+})
+
+// Post Tags
+
+router.post('/tags', async (req, res) => {
+   const tag = req.body;
+   try {
+      const newTag = await CanvasProjects.insertTag(tag);
+      res.status(201).json(newTag);
+   } catch (err) {
+      res.status(500).json({error: "Error posting tag"})
    }
 })
 

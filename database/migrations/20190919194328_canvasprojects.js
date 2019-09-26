@@ -3,7 +3,9 @@ exports.up = function(knex) {
      tbl.increments();
      tbl.string('p_name', 100);
      tbl.string('p_description', 150);
-     tbl.integer('user_created_id').unsigned().references('id').inTable('users').onDelete('CASCADE').onUpdate('CASCADE');
+     tbl.integer('user_created_id')
+      .unsigned().references('id').inTable('users')
+      .onDelete('CASCADE').onUpdate('CASCADE');
      tbl.timestamp('p_created_at').defaultTo(knex.fn.now());
      tbl.string("p_data").notNullable();
      tbl.integer('p_likes').defaultTo(0);

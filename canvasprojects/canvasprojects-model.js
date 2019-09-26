@@ -8,6 +8,7 @@ module.exports = {
    remove,
    update,
    getProjectsByUser,
+   insertTag
 };
 
 function getAll() {
@@ -68,8 +69,9 @@ function getProjectsByUser(userId) {
       .join("users", "canvasprojects.user_created_id", "=", "users.id")
       .select(
          "canvasprojects.*", 
-         "users.username", 
-         "users.email"
+         "users.name", 
+         "users.email",
+         "users.user_id"
       );
 }
 
@@ -88,4 +90,9 @@ function update(projectId, changes) {
    return db('canvasprojects')
       .where({ id: projectId })
       .update(changes);
+}
+
+function insertTag(tag) {
+   return db('tags')
+      .insert(tag);
 }
