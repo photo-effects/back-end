@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
 // GET Methods
 
-router.get('/projects', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
    const canvasprojects = await CanvasProjects.getAll();
    res.status(200).json(canvasprojects)
@@ -36,7 +36,7 @@ router.get('/:projectId/tags', async (req, res) => {
    }
 })
 
-router.get('/user/:userId/projects', async (req, res) => {
+router.get('/users/:userId/projects', async (req, res) => {
    const { userId } = req.params;
    try {
       const canvasprojectsbyUserId = await CanvasProjects.getProjectsByUser(userId);
@@ -47,7 +47,7 @@ router.get('/user/:userId/projects', async (req, res) => {
 })
 
 
-// POST Methods
+// Other Project Methods
 
 router.post('/', async (req, res) => {
    const project = req.body;

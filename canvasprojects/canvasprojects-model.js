@@ -7,38 +7,48 @@ module.exports = {
    insert,
    remove,
    update,
-   getProjectsByUser
+   getProjectsByUser,
 };
 
 function getAll() {
+   return db('canvasprojects')
+      // .join("tags", "canvasprojects.id", "=", "tags.project_id")
+      // .select("canvasprojects.*")
+      // .then(projects => {
+      //    return db('tags')
+      //       // .where({ 'canvasprojects.id': 'tags.project_id'  })
+      //       .select('tags.name')
+      //       .then(tags => {
+      //          // const result = { ...projects, tags: tags };
+      //          // return result;
+               
+      //          const result = projects.map((project, key) => {
+      //             const newtags = getTagsByProjectId(project[key])
+      //             return {
+      //               project,
+      //               tags: newtags
+      //             }
+      //          })
+      //          return result;
+      //       })
+      // })
+
    // return db('canvasprojects')
-   //    .join("tags", "canvasprojects.id", "=", "tags.project_id")
-   //    .select("canvasprojects.*", "tags.name")
-
-   const tags = db('canvasprojects')
-   .join("tags", "canvasprojects.id", "=", "tags.project_id")
-   .select("tags.name")
-
-   return {...tags}
+   //    .join("tags","tags.project_id", "=", "canvasprojects.id")
+   //    .select("canvasprojects.*")
+   //    .then(projects => {
+   //       return projects
+   //    })
 }
 
 function getById(projectId) {
-   // return db('canvasprojects')
-   //    .where({ id: projectId})
-   //    .first();
-
-   // const tags = db('tags')
-   //    .join("canvasprojects", "canvasprojects.id", "=", "tags.project_id")
-   //    .where({ project_id: projectId })
-   //    .select("tags.name", "tags.project_id")
-
    return db('canvasprojects')
       .where({ id: projectId })
       .select("canvasprojects.*")
       .then(projects => {
          return db('tags')
          .where({project_id: projectId})
-         .select("tags.name")
+         .select("tags.name as tag")
          .then(tags => {
             const result = { ...projects[0], tags: tags };
             return result;
