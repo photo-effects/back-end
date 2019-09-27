@@ -1,13 +1,9 @@
 const router = require("express").Router();
 const CanvasProjects = require("./canvasprojects-model.js");
 
-router.get('/', (req, res) => {
-   res.status(200).json({ message: "You're inside Canvas Projects Router!" });
-})
-
 // GET Methods
 
-router.get('/projects', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
    const canvasprojects = await CanvasProjects.getAll();
    res.status(200).json(canvasprojects)

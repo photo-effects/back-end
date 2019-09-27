@@ -19,6 +19,15 @@ router.get('/users', async (req, res) => {
     const users = await Users.getUsers();
     res.status(200).json(users)
    } catch (err) {
+    res.status(500).json({ error: "Error retrieving all users"})
+   }
+})
+
+router.get('/users/ids', async (req, res) => {
+  try {
+    const users = await Users.getAllUserId();
+    res.status(200).json(users)
+   } catch (err) {
     res.status(500).json(err)
    }
 })
@@ -30,7 +39,7 @@ router.get('/users/:userId', async (req, res) => {
     const user = await Users.getUserById(userId);
     res.status(201).json(user);
   } catch(err) {
-    res.status(500).json(err)
+    res.status(500).json({error: "Error retrieving user by id"})
   }
 })
 

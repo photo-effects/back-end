@@ -5,7 +5,8 @@ module.exports = {
     //findProject,
     insertUser,
     getUserById,
-    getProjectsByUser
+    getProjectsByUser,
+    getAllUserId
 };
 
 function getUsers() {
@@ -34,4 +35,9 @@ function getProjectsByUser(userId) {
           "users.email",
           "users.user_id"
        );
+}
+
+function getAllUserId() {
+    return db('users')
+        .select("users.user_id")
 }
