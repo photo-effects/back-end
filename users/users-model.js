@@ -22,7 +22,8 @@ function getUserById(userId) {
 
 function insertUser(newUser) {
     return db('users')
-       .insert(newUser);
+       .insert(newUser)
+       .returning('id')
 }
 
 function getProjectsByUser(userId) {

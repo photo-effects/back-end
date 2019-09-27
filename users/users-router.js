@@ -2,7 +2,6 @@ const router = require("express").Router();
 
 const Users = require("./users-model.js");
 
-
 router.get("/api/users", (req, res) => {
     Users.getUsers()
       .then(users => {
@@ -66,4 +65,4 @@ router.post("/users", async (req, res) => {
   }
 });
 
-  module.exports = router;
+module.exports = router;
