@@ -7,7 +7,6 @@ module.exports = {
    insert,
    remove,
    update,
-   getProjectsByUser,
    insertTag
 };
 
@@ -61,18 +60,6 @@ function getTagsByProjectId(projectId) {
    return db('tags')
       .where({ project_id: projectId })
       .select("tags.name", "tags.project_id")
-}
-
-function getProjectsByUser(userId) {
-   return db('canvasprojects')
-      .where({ user_created_id: userId })
-      .join("users", "canvasprojects.user_created_id", "=", "users.id")
-      .select(
-         "canvasprojects.*", 
-         "users.name", 
-         "users.email",
-         "users.user_id"
-      );
 }
 
 function insert(project) {

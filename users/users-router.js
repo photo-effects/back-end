@@ -33,6 +33,16 @@ router.get('/users/:userId', async (req, res) => {
     res.status(500).json(err)
   }
 })
+
+router.get('/users/:userId/projects', async (req, res) => {
+  const { userId } = req.params;
+  try {
+     const canvasprojectsbyUserId = await Users.getProjectsByUser(userId);
+     res.status(200).json(canvasprojectsbyUserId);
+  } catch (err) {
+     res.status(500).json({ error: "Error retrieving projects by User Id"})
+  }
+})
   
 // Insert User
 
@@ -46,9 +56,5 @@ router.post("/users", async (req, res) => {
     res.status(500).json(err);
   }
 });
-
-  
-
-
 
   module.exports = router;

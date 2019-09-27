@@ -36,17 +36,6 @@ router.get('/:projectId/tags', async (req, res) => {
    }
 })
 
-router.get('/users/:userId/projects', async (req, res) => {
-   const { userId } = req.params;
-   try {
-      const canvasprojectsbyUserId = await CanvasProjects.getProjectsByUser(userId);
-      res.status(200).json(canvasprojectsbyUserId);
-   } catch (err) {
-      res.status(500).json({ error: "Error retrieving projects by User Id"})
-   }
-})
-
-
 // Other Project Methods
 
 router.post('/', async (req, res) => {
