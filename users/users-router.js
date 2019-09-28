@@ -51,6 +51,16 @@ router.get('/users/:userId/projects', async (req, res) => {
      res.status(500).json({ error: "Error retrieving projects by User Id"})
   }
 })
+
+router.get('/users/google/:googleId/projects', async (req, res) => {
+  const { googleId } = req.params;
+  try {
+     const canvasprojectsbyGoogleId = await Users.getProjectsByGoogleId(googleId);
+     res.status(200).json(canvasprojectsbyGoogleId);
+  } catch (err) {
+     res.status(500).json(err)
+  }
+})
   
 // Insert User
 
