@@ -7,7 +7,8 @@ module.exports = {
     getUserById,
     getProjectsByUser,
     getAllUserId,
-    getProjectsByGoogleId
+    getProjectsByGoogleId,
+    getUserByGoogleId
 };
 
 function getUsers() {
@@ -18,7 +19,13 @@ function getUsers() {
 function getUserById(userId) {
     return db('users')
        .where({ id: userId })
-       .select("users.name", 'users.email')
+       .select("users.name", 'users.email', "users.id", "users.user_id")
+}
+
+function getUserByGoogleId(googleId) {
+    return db('users')
+        .where({ user_id: googleId })
+        .select("users.name", "users.email", "users.id", "users.user_id")
 }
 
 function insertUser(newUser) {

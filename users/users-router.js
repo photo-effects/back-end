@@ -42,6 +42,17 @@ router.get('/users/:userId', async (req, res) => {
   }
 })
 
+router.get('/users/google/:googleId', async (req, res) => {
+  const { googleId } = req.params;
+
+  try {
+    const user = await Users.getUserByGoogleId(googleId);
+    res.status(201).json(user);
+  } catch(err) {
+    res.status(500).json({error: "Error retrieving user by google Id"})
+  }
+})
+
 router.get('/users/:userId/projects', async (req, res) => {
   const { userId } = req.params;
   try {
