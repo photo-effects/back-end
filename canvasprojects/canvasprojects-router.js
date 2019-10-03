@@ -57,4 +57,15 @@ router.post('/tags', async (req, res) => {
    }
 })
 
+
+router.delete('/:projectId', async (req, res) => {
+   const { projectId } = req.params;
+   try {
+      const result = await CanvasProjects.remove(projectId);
+      res.status(201).json(result);
+   } catch (err) {
+      res.status(500).json({error: "Error deleting canvas project"})
+   }
+})
+
 module.exports = router;

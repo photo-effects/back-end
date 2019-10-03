@@ -12,33 +12,6 @@ module.exports = {
 
 function getAll() {
    return db('canvasprojects')
-      // .join("tags", "canvasprojects.id", "=", "tags.project_id")
-      // .select("canvasprojects.*")
-      // .then(projects => {
-      //    return db('tags')
-      //       // .where({ 'canvasprojects.id': 'tags.project_id'  })
-      //       .select('tags.name')
-      //       .then(tags => {
-      //          // const result = { ...projects, tags: tags };
-      //          // return result;
-               
-      //          const result = projects.map((project, key) => {
-      //             const newtags = getTagsByProjectId(project[key])
-      //             return {
-      //               project,
-      //               tags: newtags
-      //             }
-      //          })
-      //          return result;
-      //       })
-      // })
-
-   // return db('canvasprojects')
-   //    .join("tags","tags.project_id", "=", "canvasprojects.id")
-   //    .select("canvasprojects.*")
-   //    .then(projects => {
-   //       return projects
-   //    })
 }
 
 function getById(projectId) {
