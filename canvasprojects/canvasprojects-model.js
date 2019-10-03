@@ -37,7 +37,8 @@ function getTagsByProjectId(projectId) {
 
 function insert(project) {
    return db('canvasprojects')
-      .insert(project);
+      .returning('*')
+      .insert(project)
 }
 
 function remove(projectId) {
@@ -49,6 +50,7 @@ function remove(projectId) {
 function update(projectId, changes) {
    return db('canvasprojects')
       .where({ id: projectId })
+      .returning("*")
       .update(changes);
 }
 

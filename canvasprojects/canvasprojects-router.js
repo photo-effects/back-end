@@ -32,16 +32,41 @@ router.get('/:projectId/tags', async (req, res) => {
    }
 })
 
-// Other Project Methods
+// Canvas Project - POST
 
 router.post('/', async (req, res) => {
    const project = req.body;
-
    try {
       const newProject = await CanvasProjects.insert(project);
       res.status(201).json(newProject);
    } catch (err) {
       res.status(500).json({ error: "Error posting new project"})
+   }
+})
+
+// Canvas Project - DELETE
+
+router.delete('/:projectId', async (req, res) => {
+   const { projectId } = req.params;
+   try {
+      const result = await CanvasProjects.remove(projectId);
+      res.status(201).json(result);
+   } catch (err) {
+      res.status(500).json({error: "Error deleting canvas project"})
+   }
+})
+
+// Canvas Project - UPDATE
+
+router.put('/:projectId', async (req, res) => {
+   const { projectId } = req.params;
+   const projectUpdate = req.body;
+
+   try {
+      const result = await CanvasProjects.update(projectId, projectUpdate);
+      res.status(201).json(result);
+   } catch (err) {
+      res.status(500).json({error: "Error updating canvas project"})
    }
 })
 
@@ -54,17 +79,6 @@ router.post('/tags', async (req, res) => {
       res.status(201).json(newTag);
    } catch (err) {
       res.status(500).json({error: "Error posting tag"})
-   }
-})
-
-
-router.delete('/:projectId', async (req, res) => {
-   const { projectId } = req.params;
-   try {
-      const result = await CanvasProjects.remove(projectId);
-      res.status(201).json(result);
-   } catch (err) {
-      res.status(500).json({error: "Error deleting canvas project"})
    }
 })
 
