@@ -40,6 +40,17 @@ server.post('/image-upload', (req, res) => {
         .catch((err) => res.status(400).json(err));
 })
 
+server.post('/download', (req, res) => {
+    try {
+        await cloudinary.uploader.upload(req.body);
+        res.status(200).json({message: 'Went to cloudinary!'})
+    } catch(err) {
+        res.status(500).json({err: 'Something went wrong backend!'})
+    }
+})
+
+
+
 server.post('/cloudinary/upload', (req, res) => {
     // const values = Object.values(req.files)
     // const promises = values.map(image => cloudinary.uploader.upload(image.path))
