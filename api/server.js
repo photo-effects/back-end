@@ -40,7 +40,7 @@ server.post('/image-upload', (req, res) => {
         .catch((err) => res.status(400).json(err));
 })
 
-server.post('/cloudinary/upload', async (req, res) => {
+server.post('/cloudinary/upload', (req, res) => {
     // const values = Object.values(req.files)
     // const promises = values.map(image => cloudinary.uploader.upload(image.path))
     // Promise
@@ -48,13 +48,11 @@ server.post('/cloudinary/upload', async (req, res) => {
     //     .then(results => res.json(results))
     //     .catch((err) => res.status(400).json(err));
     const imageURL = req.body;
-
-    try {
-        await cloudinary.uploader.upload(imageURL)
-        res.json({message: "Uploaded"})
-    } catch (err) {
-        res.status(500).json({error: "Error uploading"})
-    }
+        cloudinary.uploader.upload(imageURL)
+        Promise
+        .all(promises)
+        .then(results => res.json(results))
+        .catch((err) => res.status(400).json(err));
 })
 
 
