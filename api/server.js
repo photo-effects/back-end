@@ -30,6 +30,18 @@ server.get('/', (req, res) => {
 
 
 
+
+// download test
+server.post('/download', async(req, res) => {
+    try {
+        await cloudinary.uploader.upload(req.body);
+        res.status(200).json({message: 'Image added!'})
+    } catch(err) {
+        res.status(500).json({ message: "Error Look At Backend!" })
+    }
+})
+
+
 // After clicking "Choose File" this pushes image to cloudinary db
 server.post('/image-upload', (req, res) => {
     const values = Object.values(req.files)
