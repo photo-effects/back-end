@@ -6,6 +6,7 @@ const formData = require('express-form-data');
 
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
+const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js');
 
 const server = express();
 
@@ -23,30 +24,32 @@ server.use(formData.parse());
 
 server.use('/', usersRouter);
 server.use('/', projectsRouter);
+server.use('/canvas', canvasprojectsRouter);
 
 server.get('/', (req, res) => {
     res.send('Welcome to the Back-end for Photo Effects! :) Please enjoy your stay! Working try connecting! xoxo :)')
 });
-
-
-
-
-// download test
-server.post('/download', async(req, res) => {
-    try {
-        await cloudinary.uploader.upload(req.body);
-        res.status(200).json({message: 'Image added!'})
-    } catch(err) {
-        res.status(500).json({ message: "Error Look At Backend!" })
-    }
-})
-
 
 // After clicking "Choose File" this pushes image to cloudinary db
 server.post('/image-upload', (req, res) => {
     const values = Object.values(req.files)
     const promises = values.map(image => cloudinary.uploader.upload(image.path))
     Promise
+        .all(promises)
+        .then(results => res.json(results))
+        .catch((err) => res.status(400).json(err));
+})
+
+server.post('/cloudinary/upload', (req, res) => {
+    // const values = Object.values(req.files)
+    // const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    // Promise
+    //     .all(promises)
+    //     .then(results => res.json(results))
+    //     .catch((err) => res.status(400).json(err));
+    const imageURL = req.body;
+        cloudinary.uploader.upload(imageURL)
+        Promise
         .all(promises)
         .then(results => res.json(results))
         .catch((err) => res.status(400).json(err));
