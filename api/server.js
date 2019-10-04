@@ -40,6 +40,23 @@ server.post('/image-upload', (req, res) => {
         .catch((err) => res.status(400).json(err));
 })
 
+server.post('/cloudinary/upload', async (req, res) => {
+    // const values = Object.values(req.files)
+    // const promises = values.map(image => cloudinary.uploader.upload(image.path))
+    // Promise
+    //     .all(promises)
+    //     .then(results => res.json(results))
+    //     .catch((err) => res.status(400).json(err));
+    const imageURL = req.body;
+
+    try {
+        await cloudinary.uploader.upload(imageURL)
+        res.json({message: "Uploaded"})
+    } catch (err) {
+        res.status(500).json({error: "Error uploading"})
+    }
+})
+
 
 server.delete('/image-delete', async (req, res) => {
     try {
