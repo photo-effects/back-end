@@ -21,7 +21,6 @@ server.use(express.json());
 server.use(cors());
 server.use(formData.parse());
 
-
 server.use('/', usersRouter);
 server.use('/', projectsRouter);
 server.use('/canvas', canvasprojectsRouter);
@@ -48,13 +47,15 @@ server.post('/cloudinary/upload', (req, res) => {
     //     .then(results => res.json(results))
     //     .catch((err) => res.status(400).json(err));
     const imageURL = req.body;
-        cloudinary.uploader.upload(imageURL)
-        Promise
+    cloudinary.uploader.upload(imageURL)
+    Promise
         .all(promises)
         .then(results => res.json(results))
         .catch((err) => res.status(400).json(err));
-})
 
+    // cloudinary.v2.uploader.upload("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==", 
+    // function(error, result) {console.log(result, error); }); 
+})
 
 server.delete('/image-delete', async (req, res) => {
     try {
@@ -67,9 +68,5 @@ server.delete('/image-delete', async (req, res) => {
         })
     }
 })
-
-
-
-
 
 module.exports = server;

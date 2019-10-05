@@ -1,8 +1,6 @@
-
 const router = require("express").Router();
 const cloudinary = require('cloudinary');
 const Projects = require("./projects-model.js");
-
 
 router.get("/api/projects", (req, res) => {
     Projects.find()
@@ -12,9 +10,8 @@ router.get("/api/projects", (req, res) => {
       .catch(err => res.send(err));
   });
 
-
-  // posts new project to our postgreSQL db
-  router.post("/api/projects", async(req, res) => {
+// posts new project to our postgreSQL db
+router.post("/api/projects", async(req, res) => {
     const post = req.body;
     try {
         if(post.title) {
@@ -27,7 +24,6 @@ router.get("/api/projects", (req, res) => {
         res.status(500).json(err);
     }
 })
-
 
 // deletes project from postgreSQL and cloudinary db
 router.delete("/api/projects/:id", async (req,res) => {
@@ -48,5 +44,4 @@ router.delete("/api/projects/:id", async (req,res) => {
   }
 })
 
-
-  module.exports = router;
+module.exports = router;
