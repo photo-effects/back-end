@@ -67,6 +67,7 @@ server.post('/cloudinary/upload2', async (req, res) => {
             message: "Image was not added!"
         })
     }
+})
 
 
 server.delete('/image-delete', async (req, res) => {
