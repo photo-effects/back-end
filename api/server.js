@@ -57,6 +57,18 @@ server.post('/cloudinary/upload', (req, res) => {
     // function(error, result) {console.log(result, error); }); 
 })
 
+server.post('/cloudinary/upload2', async (req, res) => {
+    const image = req.body;
+    try {
+        await cloudinary.v2.uploader.upload(image);
+        res.status(200).json({message: 'Image was added!'})
+    } catch(err) {
+        res.status(500).json({
+            message: "Image was not added!"
+        })
+    }
+
+
 server.delete('/image-delete', async (req, res) => {
     try {
     await cloudinary.v2.uploader.destroy(req.body.public_id);
