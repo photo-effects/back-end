@@ -4,11 +4,15 @@ const cors = require('cors');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
 
+const axios = require('axios');
+const FormData = require('form-data');
+
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
 const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js');
 
 const server = express();
+
 
 // cloudinary config
 cloudinary.config({ 
@@ -59,16 +63,29 @@ server.post('/cloudinary/upload', (req, res) => {
 
 server.post('/cloudinary/upload2', async (req, res) => {
     const image = req.body;
+
+    const uploadStr = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
+
+    const data = new FormData();
+    data.append("file", uploadStr);
+    data.append("upload_preset", "xvdlwjt9")
+
     try {
-        await cloudinary.v2.uploader.upload(image);
-        res.status(200).json({message: 'Image was added!'})
+
+        const res = await axios.post("https://api.cloudinary.com/v1_1/dn94qw6w7/image/upload", data)
+
+        // cloudinary.v2.uploader.upload(uploadStr3, {
+        //     format: 'jpg',
+        //     overwrite: true,
+        //     // invalidate: true,
+        //     // width: 810, height: 456, crop: "fill"
+        // })
+
+        res.status(200).json({url: res.data.secure_url})
     } catch(err) {
-        res.status(500).json({
-            message: "Image was not added!"
-        })
+        res.status(500).json(err.message)
     }
 })
-
 
 server.delete('/image-delete', async (req, res) => {
     try {
