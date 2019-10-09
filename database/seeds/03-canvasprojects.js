@@ -10,7 +10,8 @@ exports.seed = function(knex) {
           p_created_at: null,
           p_data: 'this is the project data',
           p_likes: 5,
-          p_published: false
+          p_published: false,
+          p_image: 'https://res.cloudinary.com/dn94qw6w7/image/upload/v1570033203/uzfyb9gimgrofvwxlurm.jpg',
         },
         {
           p_name: "My Second Project",
@@ -20,7 +21,8 @@ exports.seed = function(knex) {
           p_created_at: null,
           p_data: 'this is the project data for my second project',
           p_likes: 10,
-          p_published: true
+          p_published: true,
+          p_image: 'https://res.cloudinary.com/dn94qw6w7/image/upload/v1569979309/cox2ppx5mzuizfke0wno.png',
         },
         {
           p_name: "My Third Project",
@@ -30,7 +32,8 @@ exports.seed = function(knex) {
           p_created_at: null,
           p_data: 'this is the project data for my third project',
           p_likes: 10,
-          p_published: true
+          p_published: true,
+          p_image: 'https://res.cloudinary.com/dn94qw6w7/image/upload/v1570505288/fzgah8fz2rwhpbpg5foj.jpg',
         },
         {
           p_name: "My Fourth Project",
@@ -40,7 +43,8 @@ exports.seed = function(knex) {
           p_created_at: null,
           p_data: 'this is the project data for my fourth project',
           p_likes: 10,
-          p_published: true
+          p_published: true,
+          p_image: 'https://res.cloudinary.com/dn94qw6w7/image/upload/v1570501748/g0548gfxpsxjec5qlb0h.jpg',
         },
       ]);
     });

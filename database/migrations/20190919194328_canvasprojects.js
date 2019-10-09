@@ -11,6 +11,7 @@ exports.up = function(knex) {
     tbl.string("p_data").notNullable();
     tbl.integer('p_likes').defaultTo(0);
     tbl.boolean('p_published');
+    tbl.string('p_image');
   })
 };
 

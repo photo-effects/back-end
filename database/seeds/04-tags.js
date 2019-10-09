@@ -42,6 +42,42 @@ exports.seed = function(knex) {
           name: 'politics',
           project_id: 2
         },
+        {
+          name: 'memes',
+          project_id: 3
+        },
+        {
+          name: 'animals',
+          project_id: 3
+        },
+        {
+          name: 'funny',
+          project_id: 3
+        },
+        {
+          name: '80s',
+          project_id: 3
+        },
+        {
+          name: 'science',
+          project_id: 3
+        },
+        {
+          name: 'animals',
+          project_id: 4
+        },
+        {
+          name: 'funny',
+          project_id: 4
+        },
+        {
+          name: '80s',
+          project_id: 4
+        },
+        {
+          name: 'science',
+          project_id: 4
+        },
       ]);
     });
 };
