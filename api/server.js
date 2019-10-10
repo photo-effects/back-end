@@ -18,7 +18,6 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
   })
 
-
 server.use(express.json());
 server.use(cors());
 server.use(formData.parse());
@@ -29,7 +28,7 @@ server.use('/', usersRouter);
 server.use('/', projectsRouter);
 server.use('/canvas', canvasprojectsRouter);
 
-server.get('/', (req, res) => {
+server.get('/home', (req, res) => {
     res.send('Welcome to the Back-end for Photo Effects! :) Please enjoy your stay! Working try connecting! xoxo :)')
 });
 
