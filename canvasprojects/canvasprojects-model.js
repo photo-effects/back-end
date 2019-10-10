@@ -12,6 +12,19 @@ module.exports = {
 
 function getAll() {
    return db('canvasprojects')
+      .join("tags", "canvasprojects.id", "=", "tags.project_id")
+      .then((projects, key) => {
+         return db('tags')
+         .where({project_id: "canvasprojects.id"})
+         .select("tags.name as tag")
+         .then(tags => {
+            const result = { 
+               ...projects[3], 
+               tags: tags 
+            };
+            return result;
+         })
+      })
 }
 
 function getById(projectId) {

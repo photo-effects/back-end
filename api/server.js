@@ -1,4 +1,5 @@
 require('dotenv').config();
+const proxy = require('html2canvas-proxy');
 const express = require('express');
 const cors = require('cors');
 const cloudinary = require('cloudinary');
@@ -13,6 +14,8 @@ const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js
 
 const server = express();
 
+const app = express();
+app.use('/', proxy());
 
 // cloudinary config
 cloudinary.config({ 
