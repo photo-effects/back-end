@@ -11,9 +11,6 @@ const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js
 
 const server = express();
 
-const app = express();
-app.use('/', proxy());
-
 // cloudinary config
 cloudinary.config({ 
     cloud_name: process.env.CLOUD_NAME, 
@@ -21,9 +18,12 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
   })
 
+
 server.use(express.json());
 server.use(cors());
 server.use(formData.parse());
+
+server.use('/', proxy());
 
 server.use('/', usersRouter);
 server.use('/', projectsRouter);
