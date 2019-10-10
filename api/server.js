@@ -5,9 +5,6 @@ const cors = require('cors');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
 
-const axios = require('axios');
-const FormData = require('form-data');
-
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
 const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js');
