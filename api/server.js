@@ -75,8 +75,8 @@ server.post('/cloudinary/upload2', async (req, res) => {
         await cloudinary.v2.uploader.upload(image, {
             format: 'jpg',
             overwrite: true,
-            invalidate: true,
-            public_id: "fy6tjaxcmnj1uopmwc5a"
+            // invalidate: true,
+            // public_id: "fy6tjaxcmnj1uopmwc5a"
         })
 
         res.status(200).json({message: "Upload successful!"})
