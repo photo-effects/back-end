@@ -61,8 +61,11 @@ server.post('/cloudinary/upload', (req, res) => {
 })
 
 server.post('/cloudinary/upload2', async (req, res) => {
-    const image = req.body;
-    console.log(image)
+    const { image, options } = req.body;
+    console.log(image);
+    console.log(options);
+
+    const uploadStr = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
 
     // const data = new FormData();
     // data.append("file", uploadStr);
@@ -72,12 +75,7 @@ server.post('/cloudinary/upload2', async (req, res) => {
         
         // const res = await axios.post("https://api.cloudinary.com/v1_1/dn94qw6w7/image/upload", data)
 
-        await cloudinary.v2.uploader.upload(image, {
-            format: 'jpg',
-            overwrite: true,
-            // invalidate: true,
-            // public_id: "fy6tjaxcmnj1uopmwc5a"
-        })
+        await cloudinary.v2.uploader.upload(image, options)
 
         res.status(200).json({message: "Upload successful!"})
         // res.status(200).json({url: res.data.secure_url})
