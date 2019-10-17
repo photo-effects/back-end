@@ -50,11 +50,18 @@ router.delete('/:projectId', async (req, res) => {
    const { projectId } = req.params;
    try {
       const result = await CanvasProjects.remove(projectId);
-      res.status(201).json(result);
-   } catch (err) {
-      res.status(500).json({error: "Error deleting canvas project"})
+      if(result > 0) {
+        await cloudinary.v2.uploader.destroy(req.body.public_id)
+        // await cloudinary.v2.uploader.destroy()
+        res.status(200).json({ message: `Project has been deleted! ${req.params.id}` })
+      } else {
+        res.status(404).json({ message: 'Project could not be found' })
+      }
+   } catch(error) {
+      res.status(500).json({message: "Error removing project"})
    }
 })
+// const result = await CanvasProjects.remove(projectId);
 
 // Canvas Project - UPDATE
 
