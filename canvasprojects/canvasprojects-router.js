@@ -47,22 +47,27 @@ router.post('/', async (req, res) => {
 // Canvas Project - DELETE
 
 router.delete('/:projectId', async (req, res) => {
+   console.log(req.body.public_id)
+
    const { projectId } = req.params;
    try {
       const result = await CanvasProjects.remove(projectId);
-      if(result > 0) {
-        await cloudinary.v2.uploader.destroy(req.body.public_id)
-        // await cloudinary.v2.uploader.destroy()
-        res.status(200).json({ message: `Project has been deleted! ${req.params.id}` })
-      } else {
-        res.status(404).json({ message: 'Project could not be found' })
-      }
+      cloudinary.v2.uploader.destroy(req.body.public_id) // add to cloudinary endpoint
+
+      res.status(200).json({ message: `Project has been deleted! ${projectId}`})
+      // if(result > 0) {
+      //   await cloudinary.v2.uploader.destroy(req.body.public_id)
+      //   res.status(200).json({ message: `Project has been deleted! ${projectId}`})
+      // } else {
+      //   res.status(404).json({ message: 'Project could not be found' })
+      // }
    } catch(error) {
       res.status(500).json({message: "Error removing project"})
    }
 })
 // const result = await CanvasProjects.remove(projectId);
-
+//break out cloudinary endpoint and call in the delete function. 
+// My brain hurts...ty cloudinary... :'(
 // Canvas Project - UPDATE
 
 router.put('/:projectId', async (req, res) => {
