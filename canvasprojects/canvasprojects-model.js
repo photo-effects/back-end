@@ -57,6 +57,7 @@ function insert(project) {
 function remove(projectId) {
    return db('canvasprojects')
       .where({ id: projectId })
+      .returning("*")
       .del();
 }
 

@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const CanvasProjects = require("./canvasprojects-model.js");
+const cloudinary = require('cloudinary');
 
 // GET Methods
 
@@ -46,13 +47,26 @@ router.post('/', async (req, res) => {
 
 // Canvas Project - DELETE
 
+// const deleteCloudinary = async publicId => {
+//    //await cloudinary.v2.uploader.destroy(publicId)
+//    try {
+//       await cloudinary.v2.uploader.destroy(publicId)
+//       console.log("worked")
+//    } catch (err) {
+//       console.log(err)
+//    }
+// }
+
 router.delete('/:projectId', async (req, res) => {
    console.log(req.body.public_id)
 
    const { projectId } = req.params;
    try {
       const result = await CanvasProjects.remove(projectId);
-      cloudinary.v2.uploader.destroy(req.body.public_id) // add to cloudinary endpoint
+      // console.log(result)
+      // console.log(typeof result[0].public_id, result[0].public_id)
+      await cloudinary.v2.uploader.destroy(result[0].public_id) // req.body NOT NEEDED - public_id already in result
+      //deleteCloudinary(result[0].public_id);
 
       res.status(200).json({ message: `Project has been deleted! ${projectId}`})
       // if(result > 0) {
