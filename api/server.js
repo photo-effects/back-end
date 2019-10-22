@@ -62,23 +62,26 @@ server.post('/cloudinary/upload', (req, res) => {
 
 server.post('/cloudinary/upload2', async (req, res) => {
     const { image, options } = req.body;
-    console.log(image);
-    console.log(options);
-
-    const uploadStr = "data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg=="
-
-    // const data = new FormData();
-    // data.append("file", uploadStr);
-    // data.append("upload_preset", "xvdlwjt9")
-
+    let uploadresult = null;
+ 
     try {
-        
-        // const res = await axios.post("https://api.cloudinary.com/v1_1/dn94qw6w7/image/upload", data)
+        await cloudinary.v2.uploader.upload(image, options, 
+            function(error, result) {uploadresult = result; 
+        })
+        res.status(200).json(uploadresult);
+    } catch(err) {
+        res.status(500).json(err)
+    }
+})
 
-        await cloudinary.v2.uploader.upload(image, options)
+server.post('/cloudinary/upload3', async (req, res) => {
+    const { image, options } = req.body;
 
-        res.status(200).json({message: "Upload successful!"})
-        // res.status(200).json({url: res.data.secure_url})
+    const testImage = "data:image/png;base64iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAIAAAAmkwkpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAWSURBVBhXY/xfr84AA0xQGgxwcRgYAFQWAa3rgm4EAAAAAElFTkSuQmCC";
+ 
+    try {
+        await cloudinary.v2.uploader.explicit(image, options)
+        res.status(200).json({message: "Upload successful:", url: res.secure.url})
     } catch(err) {
         res.status(500).json(err)
     }

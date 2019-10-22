@@ -47,34 +47,14 @@ router.post('/', async (req, res) => {
 
 // Canvas Project - DELETE
 
-// const deleteCloudinary = async publicId => {
-//    //await cloudinary.v2.uploader.destroy(publicId)
-//    try {
-//       await cloudinary.v2.uploader.destroy(publicId)
-//       console.log("worked")
-//    } catch (err) {
-//       console.log(err)
-//    }
-// }
-
 router.delete('/:projectId', async (req, res) => {
    console.log(req.body.public_id)
 
    const { projectId } = req.params;
    try {
       const result = await CanvasProjects.remove(projectId);
-      // console.log(result)
-      // console.log(typeof result[0].public_id, result[0].public_id)
-      await cloudinary.v2.uploader.destroy(result[0].public_id) // req.body NOT NEEDED - public_id already in result
-      //deleteCloudinary(result[0].public_id);
-
+      await cloudinary.v2.uploader.destroy(result[0].public_id) 
       res.status(200).json({ message: `Project has been deleted! ${projectId}`})
-      // if(result > 0) {
-      //   await cloudinary.v2.uploader.destroy(req.body.public_id)
-      //   res.status(200).json({ message: `Project has been deleted! ${projectId}`})
-      // } else {
-      //   res.status(404).json({ message: 'Project could not be found' })
-      // }
    } catch(error) {
       res.status(500).json({message: "Error removing project"})
    }
@@ -83,26 +63,6 @@ router.delete('/:projectId', async (req, res) => {
 //break out cloudinary endpoint and call in the delete function. 
 // My brain hurts...ty cloudinary... :'(
 // Canvas Project - UPDATE
-
-// test endpoint 
-router.delete("/projectId/:id", async (req,res) => {
-   console.log(req.body)
-   try {
-     const count = await CanvasProjects.remove(projectId);
-     if(count > 0) {
-       await cloudinary.v2.uploader.destroy(req.body.public_id)
-       // await cloudinary.v2.uploader.destroy()
-       res.status(200).json({ message: `Project has been deleted! ${req.params.id}` })
-     } else {
-       res.status(404).json({ message: 'Project could not be found' })
-     }
-   } catch(error) {
-     res.status(500).json({
-       message: "Error removing project"
-     })
-   }
- })
-
 
 router.put('/:projectId', async (req, res) => {
    const { projectId } = req.params;
