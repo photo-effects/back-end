@@ -5,6 +5,8 @@ const cors = require('cors');
 const cloudinary = require('cloudinary');
 const formData = require('express-form-data');
 
+const bodyParser = require('body-parser');
+
 const usersRouter = require('../users/users-router.js');
 const projectsRouter = require('../projects/projects-router.js');
 const canvasprojectsRouter = require('../canvasprojects/canvasprojects-router.js');
@@ -18,7 +20,11 @@ cloudinary.config({
     api_secret: process.env.API_SECRET
   })
 
-server.use(express.json());
+// server.use(express.json());
+
+server.use(bodyParser.json({limit: '50mb'}));
+server.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 server.use(cors());
 server.use(formData.parse());
 
@@ -62,13 +68,11 @@ server.post('/cloudinary/upload', (req, res) => {
 
 server.post('/cloudinary/upload2', async (req, res) => {
     const { image, options } = req.body;
-    let uploadresult = null;
  
     try {
-        await cloudinary.v2.uploader.upload(image, options, 
-            function(error, result) {uploadresult = result; 
-        })
-        res.status(200).json(uploadresult);
+        const result = await cloudinary.v2.uploader.upload(image, options) 
+        res.status(200).json(result);
+        console.log(result.secure_url);
     } catch(err) {
         res.status(500).json(err)
     }
