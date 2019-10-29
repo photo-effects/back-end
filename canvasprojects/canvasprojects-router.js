@@ -13,6 +13,15 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/published', async (req, res) => {
+   try {
+    const canvasprojects = await CanvasProjects.getAllPublished();
+    res.status(200).json(canvasprojects)
+   } catch (err) {
+    res.status(500).json(err)
+   }
+ });
+
 router.get('/:projectId', async (req, res) => {
    const { projectId } = req.params;
    try {
@@ -72,6 +81,7 @@ router.put('/:projectId', async (req, res) => {
       const result = await CanvasProjects.update(projectId, projectUpdate);
       res.status(201).json(result);
    } catch (err) {
+      console.log(err);
       res.status(500).json({error: "Error updating canvas project"})
    }
 })

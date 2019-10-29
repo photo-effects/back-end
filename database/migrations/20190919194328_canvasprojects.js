@@ -8,7 +8,7 @@ exports.up = function(knex) {
     .onDelete('CASCADE').onUpdate('CASCADE');
     tbl.string('user_created_google_id').notNullable();
     tbl.timestamp('p_created_at').defaultTo(knex.fn.now());
-    tbl.string("p_data").notNullable();
+    tbl.string("p_data", 5000).notNullable();
     tbl.integer('p_likes').defaultTo(0);
     tbl.boolean('p_published');
     tbl.string('p_image');

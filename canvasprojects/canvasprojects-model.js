@@ -2,12 +2,13 @@ const db = require('../database/dbConfig.js');
 
 module.exports = {
    getAll,
+   getAllPublished,
    getById,
    getTagsByProjectId,
    insert,
    remove,
    update,
-   insertTag
+   insertTag,
 };
 
 function getAll() {
@@ -15,16 +16,18 @@ function getAll() {
       // .join("tags", "canvasprojects.id", "=", "tags.project_id")
       // .then((projects, key) => {
       //    return db('tags')
-      //    .where({project_id: })
+      //    .where({project_id: 1})
       //    .select("tags.name as tag")
       //    .then(tags => {
-      //       const result = { 
-      //          ...projects[0], 
-      //          tags: tags 
-      //       };
+      //       const result = { ...projects[0], tags: tags };
       //       return result;
       //    })
       // })
+}
+
+function getAllPublished() {
+   return db('canvasprojects')
+      .where({ p_published: true })
 }
 
 function getById(projectId) {
