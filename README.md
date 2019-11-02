@@ -1,54 +1,59 @@
-# Photo Effects Back End Documentation
+# Table of Contents
 
-## Table of Contents
+1. [Introduction to App](#introduction)
+2. [Link to App Docs](#app-docs)
+3. [Libraries / Frameworks used](#libraries-/-frameworks)
+4. [Photo Effects Team](#photo-effects-team)
+  
 
-  - [Description](#description)
-  - [Technologies](#technologies)
-  - [Resources](#resources)
-  - [Contributors](#contributors)
+## Introduction 
+The Photo Effects App was created so you could build  beautiful and meaningful messages over photos with ease without the complexity of Photoshop and Canva. 
 
-  # Description
+## App Docs
+https://www.photoeffectsapp.com/docs
 
-  Photo Effects* is an open source application that was created to make photo editing easier and more simplified than competitors. Our goal is to allow a nearly non existent barrier to entry, while still retaining all of the features most commonly found in other photo editing apps.
-
-  # Technologies
-
-  A list of the technologies used in the creation of this app.
-
-  - Front End
+## Libraries / Frameworks
+  ### Front End
     - JavaScript
-      - React.js
-      - Redux.js
-    - PhotoStacks
-  - Back End
+    - React
+    - React Dropzone
+    
+  ### Back End
     - Node.js
-    - PostgreSQL
-    - Cloudinary / Amazon Buckets
-    - Auto0 
-
-  # Resources
-  These are the resources that were used mostly to keep track of who did what, and what they were doing. There are also resources in here that either helped us with the creation of the app, or coming up with ideas for features and the like.
-  - [Notion Documentation](https://www.notion.so/Photo-Effects-Words-Layout-Overlay-Filters-dbad058a07cc4646b3c0b583249d14a6)
-  - [Project Management](https://trello.com/c/JEQPk8BZ/20-product-canvas-document)
+    - Express
+    - Cloudinary
+    
+  ### Other Tools
+    - Auth0
+    - Trello for Planning
+    - Google Docs for Wireframming
+    - Zoom / Slack for team collaboration
+    
+   
     
 
- # Contributors
-
- All of the contributors to this project, with their Github link attached.
-
- [Ashley LaNeave](https://github.com/digitalAsh)
-
- [Christian Ford](https://github.com/Christian-Ford)
-
- [Douglas Jordan](https://github.com/douglasjordan2)
-
- [Edgar Flores](https://github.com/efloreslb)
-
- [Jasmine Logan](#)
-
- [Joe Bugajski](https://github.com/JoeBugajski)
-
- [Reyaad Rafeek](https://github.com/Reyaad510)
+## Photo Effects Team
+  - Christian Ford
+    - Front End App / Auth0
+    - GitHub : https://github.com/Christian-Ford
+  - Jasmine Logan
+    - Front End / Back End / Auth0
+    - GitHub : https://github.com/claridiva2000
+  - Nicholas Rafeek
+    - Front End / Back End
+    - GitHub : https://github.com/Reyaad510
+  - Edgar Flores
+    - Back End / Front End
+    - GitHub : https://github.com/efloreslb
+  - Douglas Jordan
+    - Built the Library / Front & Back End 
+    - GitHub : https://github.com/efloreslb
+  - Joe Bugajski
+    - Team Leader
+    - GitHub : https://github.com/JoeBugajski
+  - Ashley LaNeave
+    - Auth0
+    - GitHub : https://github.com/digitalAsh
 
  
 
