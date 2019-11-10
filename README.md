@@ -1,4 +1,6 @@
-# Table of Contents
+# Photo Effects App
+
+## Table of Contents
 
 1. [Introduction to App](#introduction)
 2. [Link to App Docs](#app-docs)
